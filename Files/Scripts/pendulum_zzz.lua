@@ -27,6 +27,6 @@ for i = 1, n_bones do
 end
 
 -- Add eye point
-U.add_single_bone(bones, "eye", "carapace", ba.createVector(0, (n_bones * bone_length) + 0.2, 0))
+U.add_single_bone(bones, "eye", ("leg a " .. n_bones), ba.createVector(0, (n_bones * bone_length) + 0.2, 0))
 
 ba.saveUberModel(models, bones, "pendulum")
