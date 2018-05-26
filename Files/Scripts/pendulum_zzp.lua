@@ -20,7 +20,7 @@ local min_extents = Vec3(-3, 0, 0)
 local max_extents = Vec3( 3, 0, 0)
 
 -- Add carapace collision sphere (cs)
-Bone(b, "carapace", 64.0, {Sphere(0.0, 1.0, 0.0, carapace_radius)})
+Bone(b, "carapace", 64.0, {Sphere(0.0, n_bones * bone_length, 0.0, carapace_radius)})
 
 -- Procedurally add cs's for each bone
 for i = 1, n_bones do
