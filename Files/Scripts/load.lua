@@ -6,7 +6,6 @@
 
 --dofile("Files/Scripts/tripod_zzp.lua")
 --dofile("Files/Scripts/tripod_zzz.lua")
-dofile("Files/Scripts/pendulum_zzp.lua")
 dofile("Files/Scripts/pendulum_zzz.lua")
 
 -- tell the game what models (zzz & zzp) we need loaded
