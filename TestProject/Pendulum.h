@@ -15,10 +15,10 @@ namespace Test
 	{
 	private:
 
-		struct Imp;
+		class Imp;
 		Imp* imp;
 
-		friend struct Imp;
+		friend class Imp;
 
 	protected:
 
