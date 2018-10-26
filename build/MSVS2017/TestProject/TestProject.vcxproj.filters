@@ -125,6 +125,7 @@
     <ClCompile Include="..\..\..\TestProject\StaticLevelGeometry.cpp">
       <Filter>Level</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\TestProject\GhostCamera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\TestProject\ConverterWhiz.h" />
@@ -251,6 +252,7 @@
     <ClInclude Include="..\..\..\TestProject\StaticLevelGeometry.h">
       <Filter>Level</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\TestProject\GhostCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Kinematics">
