@@ -2,16 +2,19 @@
 local Vec3      = ba.createVector
 
 --Common constants
-  --Pendulums are a single chain (leg) of one ore more links (bones)
+  --Pendulums are a single chain (leg) of one or more links (bones)
 local n_bones = 3               -- number of bones within the leg
 local bone_length = 1.00        -- How long each bone is
 local carapace_radius = 0.15    -- Radius of the carapace/body
 local Carapace_offset = Vec3(0, carapace_radius, 0)
+local bone_r1 = 0.05            -- "head" bone radius
+local bone_r2 = 0.01            -- "tail" bone radius
+local bone_offset = 0           -- Offset between origins of the tail of an upper bone and head of a lower bone.
 
 local min_extents = Vec3(-3, 0, 0)
 local max_extents = Vec3( 3, 0, 0)
 
-
+local Actor_offset = Vec3(0, bone_r2, 0)    -- Offset applied to everything else. Used to make the foot sit just on top of the ground plane
 
 --Model stuff
 local U = dofile("Files/Scripts/ubermodel_util.lua")
@@ -24,7 +27,7 @@ local bones = { }
 
 -- Add carapace
 --add_single_bone(add_to, name, parent_name, pos, ori)
-uBone(bones, "carapace", nil, ba.createVector(0.0, n_bones * bone_length, 0.0))
+uBone(bones, "carapace", nil, Vec3(0.0, n_bones * bone_length, 0.0) + Actor_offset)
 
 -- Procedurally add bones, starting from the carapace
 for i = 1, n_bones do
@@ -37,11 +40,11 @@ for i = 1, n_bones do
 		bpname = "leg a " .. (i-1)
 	end
 
-	uBone(bones, bname, bpname, ba.createVector( 0.0, (n_bones - i) * bone_length, 0.0))
+	uBone(bones, bname, bpname, Vec3( 0.0, (n_bones - i) * bone_length, 0.0))
 end
 
 -- Add eye point
-uBone(bones, "eye", ("leg a " .. n_bones), ba.createVector(0, (n_bones * bone_length) + 0.2, 0))
+uBone(bones, "eye", ("leg a " .. n_bones), Vec3(0, (n_bones * bone_length) + 0.2, 0))
 
 ba.saveUberModel(models, bones, "pendulum")
 
@@ -64,7 +67,6 @@ pBone(b, "carapace", 64.0, {pSphere(0.0, n_bones * bone_length, 0.0, carapace_ra
 
 -- Procedurally add cs's for each bone
 for i = 1, n_bones do
-  --local bname = "leg a " .. i
   local bname = "leg a " .. i -- This bone's name
   local bpname = nil          -- Parent bone's name
 
@@ -76,8 +78,8 @@ for i = 1, n_bones do
 
   local axes = {Vec3(0, 0, bone_length), Vec3(0, 0, bone_legth)}
   local spheres = {
-    { center = Vec3(0, (n_bones - i + 1) * bone_length, 0), radius = 0.05  },
-	{ center = Vec3(0, (n_bones - i) * bone_length, 0), radius = 0.01 }
+    { center = Vec3(0, (n_bones - i + 1) * bone_length, 0) + Actor_offset, radius = bone_r1  },
+	{ center = Vec3(0, (n_bones - i) * bone_length, 0) + Actor_offset, radius = bone_r2 }
   }
 
   pBone(b, bname, 12.0, spheres)
