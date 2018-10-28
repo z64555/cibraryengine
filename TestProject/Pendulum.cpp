@@ -313,29 +313,11 @@ void Pendulum::Imp::Update(Pendulum* dood, const TimingInfo& time)
 void Pendulum::InitBoneHelpers()
 {
 	Dood::InitBoneHelpers();
-
-	RegisterBone(imp->carapace = CBone(this, "carapace"));
-
-	const int num_bones = imp->legs.bones.size();
-	for (auto i = 0; i < num_bones; ++i) {
-		RegisterBone(imp->legs.bones[i] = CBone(this, ((stringstream&)(stringstream() << "leg a " << i)).str()));
-	}
-
 }
 
 void Pendulum::InitJointHelpers()
 {
 	Dood::InitJointHelpers();
-
-	const int num_joints = imp->legs.joints.size();
-	for (int j = 0; j < num_joints; ++j)
-	{
-		float k_x = 100;	// Strength for x axis
-		float k_y = k_x;	// '        '   y axis
-		float k_z = k_x;	// '        '   z axis
-		
-		RegisterJoint(imp->legs.joints[j] = CJoint(this, ((j == 0) ? (imp->carapace) : (imp->legs.bones[j - 1])), imp->legs.bones[j], k_x, k_y, k_z));
-	}
 
 	//for(unsigned int i = 0; i < all_joints.size(); ++i)
 	//	all_joints[i]->sjc->enable_motor = true;
