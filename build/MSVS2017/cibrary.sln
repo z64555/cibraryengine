@@ -34,6 +34,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{57AC
 		..\..\Files\Scripts\gun_zzp.lua = ..\..\Files\Scripts\gun_zzp.lua
 		..\..\Files\Scripts\load.lua = ..\..\Files\Scripts\load.lua
 		..\..\Files\Scripts\modelphysics_util.lua = ..\..\Files\Scripts\modelphysics_util.lua
+		..\..\Files\Scripts\motor_control_util.lua = ..\..\Files\Scripts\motor_control_util.lua
 		..\..\Files\Scripts\nu_crab_zzp.lua = ..\..\Files\Scripts\nu_crab_zzp.lua
 		..\..\Files\Scripts\nu_crab_zzz.lua = ..\..\Files\Scripts\nu_crab_zzz.lua
 		..\..\Files\Scripts\pendulum_zzu.lua = ..\..\Files\Scripts\pendulum_zzu.lua
