@@ -23,8 +23,8 @@ using namespace std;
  * Describes a generic kinematic chain
  */
 struct KChain {
-	vector<CBone>  bones;
-	vector<CJoint> joints;
+	vector<CBone*>  bones;
+	vector<CJoint*> joints;
 };
 
 /**
@@ -45,7 +45,7 @@ public:
 
 	Vec3 initial_pos;
 
-	CBone carapace;
+	CBone* carapace;
 	KChain legs;
 
 	vector<Vec3> initial_ee;
@@ -313,11 +313,43 @@ void Pendulum::Imp::Update(Pendulum* dood, const TimingInfo& time)
 void Pendulum::InitBoneHelpers()
 {
 	Dood::InitBoneHelpers();
+	
+	// Add carapace
+	imp->carapace = GetBone("carapace");
+
+	// Add bones in the leg
+	int n_bones = all_bones.size() - 1;
+	imp->legs.bones.resize(n_bones, nullptr);
+	for (int i = 0; i < (n_bones - 1); ++i) {
+		imp->legs.bones[i] = GetBone(((stringstream&)(stringstream() << "leg a " << i + 1)).str());
+	}
+
+	// Add foot
+	imp->legs.bones[n_bones - 1] = GetBone("foot");
+
+	// Check if all valid
+	assert(imp->carapace != nullptr);
+
+	for (auto bone : imp->legs.bones) {
+		assert(bone != nullptr);
+	}
 }
 
 void Pendulum::InitJointHelpers()
 {
 	Dood::InitJointHelpers();
+
+	auto n_bones = imp->legs.bones.size();
+	imp->legs.joints.resize(n_bones);	// Able to do this because carapace is seperate from the legs
+
+	for (auto i = 0; i < n_bones; ++i) {
+		imp->legs.joints[i] = GetJoint(imp->legs.bones[i]->name);
+	}
+
+	// Check if all valid
+	for (auto joint : imp->legs.joints) {
+		assert(joint != nullptr);
+	}
 
 	//for(unsigned int i = 0; i < all_joints.size(); ++i)
 	//	all_joints[i]->sjc->enable_motor = true;
@@ -361,7 +393,7 @@ void Pendulum::PreUpdatePoses(const TimingInfo& time)
 void Pendulum::RegisterFeet()
 {
 	// A pendulum only has one "foot"
-	string bname = "leg a 1";
+	string bname = "foot";
 	feet.push_back(new FootState(Bone::string_table[bname], Vec3(0.0f, 0.0f, 0.0f)));
 }
 
