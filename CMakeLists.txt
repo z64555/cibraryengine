@@ -1,5 +1,5 @@
 ## ./CMakeLists.txt
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.13)
 
 ## The project name.  Is the name of the solution files and default name of the executable.
 project(cibrary)
@@ -11,28 +11,32 @@ set(CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}/bin" CACHE FILEPATH "Install pat
 #set(VERSION_MAJOR 0)
 #set(VERSION_MINOR 1)
 
-## Source, Libs, an Utils directories
+## Project Source, Libs, and Utils directories
 add_subdirectory(CibraryEngine)          #Engine
 add_subdirectory(DestructibleTerrain)    #Destructable Terrain test
 add_subdirectory(DoodAnimTool)           #Actor Animation Tool
 add_subdirectory(TestProject)            #Game Test
 
-## Resources (scripts, artwork, etc) directories
-include_directories("${PROJECT_SOURCE_DIR}/Files")
+cmake_policy(VERSION 3.13)   #Use new behavior for find_package()
 
-## Third party libs an utils directores
+
+## Third Party libs/packages configurations
+# Boost
+set(Boost_USE_STATIC_LIBS OFF) 
+set(Boost_USE_MULTITHREADED ON)  
+set(Boost_USE_STATIC_RUNTIME OFF) 
+
+#lua
+find_package(Lua51)
+if(NOT LUA_FOUND)
+	set(LUA_INCLUDE    $ENV{LUA_SRC}    CACHE FILEPATH "Where lua.h is (Lua 5.1)")
+	set(LUA_LIB        ""               CACHE FILEPATH "Where lua and lualib are. (For Windows, these are .libs)")
+else()
+	set(LUA_INCLUDE LUA_INCLUDE_DIR CACHE FILEPATH "Where lua.h is (Lua 5.1)")
+	set(LUA_LIB     LUA_LIBRARIES   CACHE FILEPATH "Where lua and lualib are. (For Windows, these are .libs)")
+endif()
+
+#SOIL
 ## This form of set allows editing in cmake-gui before generation
 ## set(<var_name> <default_val> CACHE <datatype> [Description])
 set(SOIL_ROOT  $ENV{SOIL_ROOT}  CACHE FILEPATH "Root directory of your SOIL installation")
-set(LUA_SRC    $ENV{LUA_SRC}    CACHE FILEPATH "Root directory of your LUA installation")
-
-find_package(Boost REQUIRED)
-include_directories(${Boost_INCLUDE_DIRS})
-
-find_package(OpenGL REQUIRED)
-include_directories(${OPENGL_INCLUDE_DIRS})
-
-#things to do still:
-# add_executable to the three tools and the test project
-# add_library to the engine lib
-# determine how to set the default project to build, which at this point should be TestProject

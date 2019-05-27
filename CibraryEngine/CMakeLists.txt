@@ -248,8 +248,20 @@ set(ENGINE_SOURCES
 	VoxelTerrain.h
 )
 
-## External Includes
-include_directories(${BOOST_ROOT})
+## Resources (scripts, artwork, etc) directories
+include_directories("${PROJECT_SOURCE_DIR}/Files")
+
+## Third party libs an utils directores
+## Third Party libs and packages supported by Cmake find_package.
+## This effectively sets a number of variables within cmake.  notably <name>_ROOT for the root directory of the package
+find_package(Boost REQUIRED)
+find_package(OpenGL REQUIRED)
+
+include_directories("${PROJECT_SOURCE_DIR}/build/include")          #For OpenAL and OpenGL include files
+include_directories(${Boost_INCLUDE_DIRS})
+include_directories(${OPENGL_INCLUDE_DIRS})
+include_directories(${SOIL_ROOT}/src)
+include_directories(${LUA_INCLUDE})
 
 ## Build the lib
 add_library(CibraryEngine STATIC ${ENGINE_SOURCES})

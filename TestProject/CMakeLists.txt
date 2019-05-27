@@ -98,8 +98,36 @@ set(TEST_SOURCES
 	WorldBoundary.cpp
 	WorldBoundary.h
 )
+## Resources (scripts, artwork, etc) directories
+include_directories("${PROJECT_SOURCE_DIR}/Files")
+
+## Third party libs an utils directores
+include_directories("${PROJECT_SOURCE_DIR}/build/include")          #For OpenAL and OpenGL include files
+
+#Boost
+find_package(Boost REQUIRED COMPONENTS date_time)
+include_directories(${Boost_INCLUDE_DIRS})
+
+#OpenGL
+find_package(OpenGL REQUIRED)
+include_directories(${OPENGL_INCLUDE_DIR})
+
+#SOIL
+include_directories(${SOIL_ROOT}/src)
+
+#LUA
+add_library(lua SHARED IMPORTED GLOBAL)
+set_property(TARGET lua PROPERTY IMPORTED_LOCATION ${LUA_LIB})
+
+include_directories(${LUA_INCLUDE})
 ## Add target
+
 add_executable(TestProject ${TEST_SOURCES})
 
 target_include_directories(TestProject PUBLIC CibraryEngine)
 target_link_libraries(TestProject PUBLIC CibraryEngine)
+
+target_link_directories(TestProject PUBLIC ${Boost_LIBRARY_DIRS})
+target_link_libraries(TestProject PUBLIC ${Boost_LIBRARIES})
+
+target_link_libraries(TestProject PUBLIC lua)

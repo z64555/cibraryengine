@@ -7,6 +7,25 @@ set(DT_SOURCES
 	StdAfx.h
 )
 
+## Resources (scripts, artwork, etc) directories
+include_directories("${PROJECT_SOURCE_DIR}/Files")
+
+## Third party libs and utils directores
+find_package(Boost REQUIRED)
+find_package(OpenGL REQUIRED)
+
+include_directories("${PROJECT_SOURCE_DIR}/build/include")          #For OpenAL and OpenGL include files
+include_directories(${Boost_INCLUDE_DIRS})
+include_directories(${OPENGL_INCLUDE_DIRS})
+include_directories(${SOIL_ROOT}/src)
+include_directories(${LUA_INCLUDE})
+
 add_executable(DestructibleTerrain ${DT_SOURCES})
 
-#todo: Link stuffs
+## Link intra-project dependencies
+target_include_directories(DestructibleTerrain PUBLIC CibraryEngine)
+target_link_libraries(DestructibleTerrain PUBLIC CibraryEngine)
+
+## Link external dependencies
+target_link_libraries(DestructibleTerrain PUBLIC ${Boost_LIBRARIES})
+target_link_libraries(DestructibleTerrain PUBLIC lua)
