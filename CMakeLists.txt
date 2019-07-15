@@ -28,11 +28,12 @@ set(Boost_USE_STATIC_RUNTIME OFF)
 
 #lua
 find_package(Lua51)
-if(NOT LUA_FOUND)
-	set(LUA_INCLUDE    $ENV{LUA_SRC}    CACHE FILEPATH "Where lua.h is (Lua 5.1)")
-	set(LUA_LIB        ""               CACHE FILEPATH "Where lua and lualib are. (For Windows, these are .libs)")
+if(NOT LUA51_FOUND)
+	message(SEND_ERROR "Could not find Lua51, please specify the include and lib directories")
+	set(LUA_INCLUDE    $ENV{LUA_DIR}    CACHE FILEPATH "Where lua.h is (Lua 5.1).  Defaults to $LUA_DIR$")
+	set(LUA_LIB        ""               CACHE FILEPATH "Where lua and lualib are. (For Windows, these are .dll and .lib)")
 else()
-	set(LUA_INCLUDE LUA_INCLUDE_DIR CACHE FILEPATH "Where lua.h is (Lua 5.1)")
+	set(LUA_INCLUDE LUA_INCLUDE_DIR CACHE FILEPATH "Where lua.h is (Lua 5.1).")
 	set(LUA_LIB     LUA_LIBRARIES   CACHE FILEPATH "Where lua and lualib are. (For Windows, these are .libs)")
 endif()
 

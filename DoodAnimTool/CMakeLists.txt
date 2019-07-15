@@ -58,6 +58,8 @@ add_executable(DoodAnimTool ${ANITOOL_SOURCES})
 
 target_include_directories(DoodAnimTool PUBLIC CibraryEngine)
 target_link_libraries(DoodAnimTool PUBLIC CibraryEngine)
+
+target_link_directories(DoodAnimTool PUBLIC LUA_LIB)
 target_link_libraries(DoodAnimTool PUBLIC lua51)
 
 #todo: link stuffs

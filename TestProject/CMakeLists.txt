@@ -130,4 +130,5 @@ target_link_libraries(TestProject PUBLIC CibraryEngine)
 target_link_directories(TestProject PUBLIC ${Boost_LIBRARY_DIRS})
 target_link_libraries(TestProject PUBLIC ${Boost_LIBRARIES})
 
-target_link_libraries(TestProject PUBLIC lua)
+target_link_directories(TestProject PUBLIC LUA_LIB)
+target_link_libraries(TestProject PUBLIC lua51)

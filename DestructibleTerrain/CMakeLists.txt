@@ -28,4 +28,6 @@ target_link_libraries(DestructibleTerrain PUBLIC CibraryEngine)
 
 ## Link external dependencies
 target_link_libraries(DestructibleTerrain PUBLIC ${Boost_LIBRARIES})
-target_link_libraries(DestructibleTerrain PUBLIC lua)
+
+target_link_directories(DestructibleTerrain PUBLIC LUA_LIB)
+target_link_libraries(DestructibleTerrain PUBLIC lua51)
