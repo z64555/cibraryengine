@@ -1,3 +1,4 @@
+message(STATUS "Parsing './TestProject/CMakeLists.txt'")
 #./TestProject/CMakeLists.txt
 
 set(TEST_SOURCES

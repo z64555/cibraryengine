@@ -1,3 +1,4 @@
+message(STATUS "Parsing './DoodAnimTool/CMakeLists.txt'")
 #./DoodAnimTool/CMakeLists.txt
 
 set(ANITOOL_SOURCES

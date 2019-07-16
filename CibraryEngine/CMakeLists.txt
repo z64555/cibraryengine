@@ -1,3 +1,4 @@
+message(STATUS "Parsing './CibraryEngine/CMakeLists.txt'")
 #./CibraryEngine/CMakeLists.txt
 
 ## List of all source files. !!!Do not use file(GLOB)!!!

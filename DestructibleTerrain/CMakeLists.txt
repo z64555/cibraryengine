@@ -1,3 +1,4 @@
+message(STATUS "Parsing './DestructibleTerrain/CMakeLists.txt'")
 #./DestructibleTerrain/CMakeLists.txt
 set(DT_SOURCES 
 	DTMain.cpp

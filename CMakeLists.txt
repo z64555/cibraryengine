@@ -1,3 +1,4 @@
+message(STATUS "Parsing './CMakeLists.txt'")
 ## ./CMakeLists.txt
 cmake_minimum_required(VERSION 3.13)
 
@@ -11,14 +12,7 @@ set(CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}/bin" CACHE FILEPATH "Install pat
 #set(VERSION_MAJOR 0)
 #set(VERSION_MINOR 1)
 
-## Project Source, Libs, and Utils directories
-add_subdirectory(CibraryEngine)          #Engine
-add_subdirectory(DestructibleTerrain)    #Destructable Terrain test
-add_subdirectory(DoodAnimTool)           #Actor Animation Tool
-add_subdirectory(TestProject)            #Game Test
-
 cmake_policy(VERSION 3.13)   #Use new behavior for find_package()
-
 
 ## Third Party libs/packages configurations
 # Boost
@@ -41,3 +35,12 @@ endif()
 ## This form of set allows editing in cmake-gui before generation
 ## set(<var_name> <default_val> CACHE <datatype> [Description])
 set(SOIL_ROOT  $ENV{SOIL_ROOT}  CACHE FILEPATH "Root directory of your SOIL installation")
+
+
+## Project Source, Libs, and Utils directories
+## These get done last, because CMake will dive right into each subdir's generation before finishing here
+message(STATUS "Adding project dirs...")
+add_subdirectory(CibraryEngine)          #Engine
+add_subdirectory(DestructibleTerrain)    #Destructable Terrain test
+add_subdirectory(DoodAnimTool)           #Actor Animation Tool
+add_subdirectory(TestProject)            #Game Test
