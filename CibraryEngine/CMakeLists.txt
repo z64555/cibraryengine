@@ -263,6 +263,11 @@ include_directories(${OPENGL_INCLUDE_DIRS})
 include_directories(${SOIL_ROOT}/src)
 include_directories(${LUA_INCLUDE})
 
+message(STATUS "Boost_INCLUDE_DIRS  = ${Boost_INCLUDE_DIRS}")
+message(STATUS "OPENGL_INCLUDE_DIR  = ${OPENGL_INCLUDE_DIR}")
+message(STATUS "SOIL_ROOT           = ${SOIL_ROOT}")
+message(STATUS "LUA_INCLUDE         = ${LUA_INCLUDE}")
+
 ## Build the lib
 add_library(CibraryEngine STATIC ${ENGINE_SOURCES})
 

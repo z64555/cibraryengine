@@ -33,8 +33,8 @@ if(NOT LUA51_FOUND)
 	set(LUA_INCLUDE    $ENV{LUA_DIR}    CACHE FILEPATH "Where lua.h is (Lua 5.1).  Defaults to $LUA_DIR$")
 	set(LUA_LIB        ""               CACHE FILEPATH "Where lua and lualib are. (For Windows, these are .dll and .lib)")
 else()
-	set(LUA_INCLUDE LUA_INCLUDE_DIR CACHE FILEPATH "Where lua.h is (Lua 5.1).")
-	set(LUA_LIB     LUA_LIBRARIES   CACHE FILEPATH "Where lua and lualib are. (For Windows, these are .libs)")
+	set(LUA_INCLUDE ${LUA_INCLUDE_DIR} CACHE FILEPATH "Where lua.h is (Lua 5.1).")
+	set(LUA_LIB     ${LUA_LIBRARIES}   CACHE FILEPATH "Where lua and lualib are. (For Windows, these are .libs)")
 endif()
 
 #SOIL
