@@ -16,9 +16,10 @@ cmake_policy(VERSION 3.13)   #Use new behavior for find_package()
 
 ## Third Party libs/packages configurations
 # Boost
-set(Boost_USE_STATIC_LIBS OFF) 
-set(Boost_USE_MULTITHREADED ON)  
-set(Boost_USE_STATIC_RUNTIME OFF) 
+set(Boost_USE_MULTITHREADED  ON  CACHE BOOL "Set to OFF to use the non-multithreaded libraries ('mt' tag).  Default is ON")
+set(Boost_USE_STATIC_LIBS    OFF CACHE BOOL "Set to ON to force the use of the static libraries.  Default is OFF")
+set(Boost_USE_STATIC_RUNTIME OFF CACHE BOOL "Set to ON or OFF to specify whether to use libraries linked statically to the C++ runtime ('s' tag).  Default is platform dependent")
+set(Boost_USE_DEBUG_RUNTIME  ON  CACHE BOOL "Set to ON or OFF to specify whether to use libraries linked to the MS debug C++ runtime ('g' tag).  Default is ON.")
 
 #lua
 find_package(Lua51)
