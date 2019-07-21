@@ -1,6 +1,6 @@
 message(STATUS "Parsing './CMakeLists.txt'")
 ## ./CMakeLists.txt
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.12)
 
 ## The project name.  Is the name of the solution files and default name of the executable.
 project(cibrary)
@@ -12,7 +12,7 @@ set(CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}/bin" CACHE FILEPATH "Install pat
 #set(VERSION_MAJOR 0)
 #set(VERSION_MINOR 1)
 
-cmake_policy(VERSION 3.13)   #Use new behavior for find_package()
+cmake_policy(VERSION 3.12)   #Use new behavior for find_package()
 
 ## Third Party libs/packages configurations
 # Boost

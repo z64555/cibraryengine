@@ -255,13 +255,20 @@ include_directories("${PROJECT_SOURCE_DIR}/Files")
 ## Third party libs an utils directores
 ## Third Party libs and packages supported by Cmake find_package.
 ## This effectively sets a number of variables within cmake.  notably <name>_ROOT for the root directory of the package
+#Boost
 find_package(Boost COMPONENTS date_time REQUIRED)
-find_package(OpenGL REQUIRED)
-
-include_directories("${PROJECT_SOURCE_DIR}/build/include")          #For OpenAL and OpenGL include files
 include_directories(${Boost_INCLUDE_DIRS})
+link_directories(${Boost_LIBRARY_DIRS})
+
+#OpenGL and OpenAL
+find_package(OpenGL REQUIRED)
 include_directories(${OPENGL_INCLUDE_DIRS})
+include_directories("${PROJECT_SOURCE_DIR}/build/include")          #For OpenAL and OpenGL include files
+
+#Soil
 include_directories(${SOIL_ROOT}/src)
+
+#Lua
 include_directories(${LUA_INCLUDE})
 
 message(STATUS "Boost_INCLUDE_DIRS  = ${Boost_INCLUDE_DIRS}")

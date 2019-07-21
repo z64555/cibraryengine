@@ -108,6 +108,7 @@ include_directories("${PROJECT_SOURCE_DIR}/build/include")          #For OpenAL 
 #Boost
 find_package(Boost REQUIRED COMPONENTS date_time)
 include_directories(${Boost_INCLUDE_DIRS})
+link_directories(${Boost_LIBRARY_DIRS})
 
 #OpenGL
 find_package(OpenGL REQUIRED)
@@ -121,15 +122,14 @@ add_library(lua SHARED IMPORTED GLOBAL)
 set_property(TARGET lua PROPERTY IMPORTED_LOCATION ${LUA_LIB})
 
 include_directories(${LUA_INCLUDE})
-## Add target
 
+
+## Add target
 add_executable(TestProject ${TEST_SOURCES})
 
 target_include_directories(TestProject PUBLIC CibraryEngine)
 target_link_libraries(TestProject PUBLIC CibraryEngine)
 
-target_link_directories(TestProject PUBLIC ${Boost_LIBRARY_DIRS})
 target_link_libraries(TestProject PUBLIC ${Boost_LIBRARIES})
 
-target_link_directories(TestProject PUBLIC LUA_LIB)
-target_link_libraries(TestProject PUBLIC lua51)
+target_link_libraries(TestProject PUBLIC ${LUA_LIB})
