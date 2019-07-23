@@ -21,7 +21,7 @@ set(Boost_USE_STATIC_LIBS    OFF CACHE BOOL "Set to ON to force the use of the s
 set(Boost_USE_STATIC_RUNTIME OFF CACHE BOOL "Set to ON or OFF to specify whether to use libraries linked statically to the C++ runtime ('s' tag).  Default is platform dependent")
 set(Boost_USE_DEBUG_RUNTIME  ON  CACHE BOOL "Set to ON or OFF to specify whether to use libraries linked to the MS debug C++ runtime ('g' tag).  Default is ON.")
 
-#lua
+# LUA
 find_package(Lua51)
 if(NOT LUA51_FOUND)
 	message(SEND_ERROR "Could not find Lua51, please specify the include and lib directories")
@@ -32,7 +32,34 @@ else()
 	set(LUA_LIB     ${LUA_LIBRARIES}   CACHE FILEPATH "Where lua and lualib are. (For Windows, these are .libs)")
 endif()
 
-#SOIL
+# OpenAL
+find_package(OpenAL)
+if(NOT OPENAL_FOUND)
+	message(SEND_ERROR "Could not find OpenAL, please specify the include and lib directories"
+	set(OPENAL_INCLUDE  $ENV{OPENALDIR} CACHE FILEPATH "Where the al.h is.  Default is .\OpenAL SDK\include"
+	set(OPENAL_LIB      ""              CACHE FILEPATH "Where the OpenAL32.lib is.  Default is .\OpenAL SDK\libs\Win32"
+else()
+	get_filename_component(OPENAL_LIBRARY_DIRS ${OPENAL_LIBRARY} DIRECTORY)
+	set(OPENAL_INCLUDE  ${OPENAL_INCLUDE_DIR}   CACHE FILEPATH "Where the al.h is.  Default is .\OpenAL SDK\include"
+	set(OPENAL_LIB      ${OPENAL_LIBRARY_DIRS}  CACHE FILEPATH "Where the OpenAL32.lib is.  Default is .\OpenAL SDK\libs\Win32"
+endif()
+
+#message(STATUS "OPENAL_INCLUDE_DIR = ${OPENAL_INCLUDE_DIR}")
+#message(STATUS "OPENAL_LIBRARY = ${OPENAL_LIBRARY}")
+
+get_filename_component(OPENAL_LIBRARY_DIRS ${OPENAL_LIBRARY} DIRECTORY)
+#message(STATUS "OPENAL_LIBRARY_DIRS = ${OPENAL_LIBRARY_DIRS}")
+
+
+# OpenGL
+find_package(OpenGL REQUIRED)
+message(STATUS "OpenGL found?........${OPENGL_FOUND}")
+message(STATUS "GLU found?...........${OPENGL_GLU_FOUND}")
+message(STATUS "OpenGL Lib found?....${OpenGL_OpenGL_FOUND}")
+message(STATUS "OPENGL_INCLUDE_DIRS..${OPENGL_INCLUDE_DIRS}")
+message(STATUS "OPENGL_LIBRARIES.....${OPENGL_LIBRARIES}")
+
+# SOIL
 ## This form of set allows editing in cmake-gui before generation
 ## set(<var_name> <default_val> CACHE <datatype> [Description])
 set(SOIL_ROOT  $ENV{SOIL_ROOT}  CACHE FILEPATH "Root directory of your SOIL installation")

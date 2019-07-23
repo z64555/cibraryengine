@@ -52,10 +52,16 @@ find_package(Boost COMPONENTS date_time REQUIRED)
 include_directories(${Boost_INCLUDE_DIRS})
 link_directories(${Boost_LIBRARY_DIRS})
 
-#OpenGL and OpenAL
-find_package(OpenGL REQUIRED)
+# OpenAL
+# Found in root CMakeLists.txt
+include_directories(${OPENAL_INCLUDE})
+link_directories(${OPENAL_LIB})
+
+# OpenGL
+# Found in root CMakeLists.txt
 include_directories(${OPENGL_INCLUDE_DIRS})
-include_directories("${PROJECT_SOURCE_DIR}/build/include")          #For OpenAL and OpenGL include files
+
+#include_directories("${PROJECT_SOURCE_DIR}/build/include")          #For OpenAL and OpenGL include files
 
 #Soil
 include_directories(${SOIL_ROOT}/src)
@@ -73,3 +79,4 @@ target_link_libraries(DoodAnimTool PUBLIC CibraryEngine)
 ## Link external dependencies
 target_link_libraries(DoodAnimTool PUBLIC ${Boost_LIBRARIES})
 target_link_libraries(DoodAnimTool PUBLIC ${LUA_LIB})
+target_link_libraries(DoodAnimTool PUBLIC OpenAL32)

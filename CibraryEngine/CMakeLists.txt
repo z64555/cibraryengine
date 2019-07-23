@@ -255,20 +255,26 @@ include_directories("${PROJECT_SOURCE_DIR}/Files")
 ## Third party libs an utils directores
 ## Third Party libs and packages supported by Cmake find_package.
 ## This effectively sets a number of variables within cmake.  notably <name>_ROOT for the root directory of the package
-#Boost
+# Boost
 find_package(Boost COMPONENTS date_time REQUIRED)
 include_directories(${Boost_INCLUDE_DIRS})
 link_directories(${Boost_LIBRARY_DIRS})
 
-#OpenGL and OpenAL
-find_package(OpenGL REQUIRED)
-include_directories(${OPENGL_INCLUDE_DIRS})
-include_directories("${PROJECT_SOURCE_DIR}/build/include")          #For OpenAL and OpenGL include files
+# OpenAL
+# Found in root CMakeLists.txt
+include_directories(${OPENAL_INCLUDE})
+link_directories(${OPENAL_LIB})
 
-#Soil
+# OpenGL
+# Found in root CMakeLists.txt
+include_directories(${OPENGL_INCLUDE_DIRS})
+
+#include_directories("${PROJECT_SOURCE_DIR}/build/include")          #For OpenAL and OpenGL include files
+
+# SOIL
 include_directories(${SOIL_ROOT}/src)
 
-#Lua
+# LUA
 include_directories(${LUA_INCLUDE})
 
 message(STATUS "Boost_INCLUDE_DIRS  = ${Boost_INCLUDE_DIRS}")
@@ -284,3 +290,6 @@ add_library(CibraryEngine STATIC ${ENGINE_SOURCES})
 #soil
 #lua
 #winSDK
+#OpenGL
+target_link_libraries(CibraryEngine PUBLIC ${OPENGL_LIBRARIES})
+target_link_libraries(CibraryEngine PUBLIC OpenAL32)

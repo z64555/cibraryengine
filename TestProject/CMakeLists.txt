@@ -105,19 +105,26 @@ include_directories("${PROJECT_SOURCE_DIR}/Files")
 ## Third party libs an utils directores
 include_directories("${PROJECT_SOURCE_DIR}/build/include")          #For OpenAL and OpenGL include files
 
-#Boost
+# Boost
 find_package(Boost REQUIRED COMPONENTS date_time)
 include_directories(${Boost_INCLUDE_DIRS})
 link_directories(${Boost_LIBRARY_DIRS})
 
-#OpenGL
-find_package(OpenGL REQUIRED)
-include_directories(${OPENGL_INCLUDE_DIR})
+# OpenAL
+# Found in root CMakeLists.txt
+include_directories(${OPENAL_INCLUDE})
+link_directories(${OPENAL_LIB})
 
-#SOIL
+# OpenGL
+# Found in root CMakeLists.txt
+include_directories(${OPENGL_INCLUDE_DIRS})
+
+#include_directories("${PROJECT_SOURCE_DIR}/build/include")          #For OpenAL and OpenGL include files
+
+# SOIL
 include_directories(${SOIL_ROOT}/src)
 
-#LUA
+# LUA
 add_library(lua SHARED IMPORTED GLOBAL)
 set_property(TARGET lua PROPERTY IMPORTED_LOCATION ${LUA_LIB})
 
@@ -131,5 +138,5 @@ target_include_directories(TestProject PUBLIC CibraryEngine)
 target_link_libraries(TestProject PUBLIC CibraryEngine)
 
 target_link_libraries(TestProject PUBLIC ${Boost_LIBRARIES})
-
+target_link_libraries(TestProject PUBLIC OpenAL32)
 target_link_libraries(TestProject PUBLIC ${LUA_LIB})

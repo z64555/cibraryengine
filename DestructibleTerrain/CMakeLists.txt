@@ -12,20 +12,27 @@ set(DT_SOURCES
 include_directories("${PROJECT_SOURCE_DIR}/Files")
 
 ## Third party libs and utils directores
-#Boost
+# Boost
 find_package(Boost COMPONENTS date_time REQUIRED)
 include_directories(${Boost_INCLUDE_DIRS})
 link_directories(${Boost_LIBRARY_DIRS})
 
-#OpenGL and OpenAL
-find_package(OpenGL REQUIRED)
-include_directories(${OPENGL_INCLUDE_DIRS})
-include_directories("${PROJECT_SOURCE_DIR}/build/include")          #For OpenAL and OpenGL include files
+# OpenAL
+# Found in root CMakeLists.txt
+include_directories(${OPENAL_INCLUDE})
+link_directories(${OPENAL_LIB})
 
-#Soil
+# OpenGL
+# Found in root CMakeLists.txt
+include_directories(${OPENGL_INCLUDE_DIRS})
+
+#include_directories("${PROJECT_SOURCE_DIR}/build/include")          #For OpenAL and OpenGL include files
+
+# SOIL
 include_directories(${SOIL_ROOT}/src)
 
-#Lua
+# LUA
+# Found in root CMakeLists.txt
 include_directories(${LUA_INCLUDE})
 
 ## Add target
@@ -38,3 +45,4 @@ target_link_libraries(DestructibleTerrain PUBLIC CibraryEngine)
 ## Link external dependencies
 target_link_libraries(DestructibleTerrain PUBLIC ${Boost_LIBRARIES})
 target_link_libraries(DestructibleTerrain PUBLIC ${LUA_LIB})
+target_link_libraries(DestructibleTerrain PUBLIC OpenAL32)
