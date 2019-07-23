@@ -23,7 +23,7 @@ set(Boost_USE_DEBUG_RUNTIME  ON  CACHE BOOL "Set to ON or OFF to specify whether
 
 # LUA
 find_package(Lua51)
-if(NOT LUA51_FOUND)
+if((NOT LUA51_FOUND) AND (NOT LUA_INCLUDE) AND (NOT LUA_LIB))
 	message(SEND_ERROR "Could not find Lua51, please specify the include and lib directories")
 	set(LUA_INCLUDE    $ENV{LUA_DIR}    CACHE PATH "Where lua.h is (Lua 5.1).  Defaults to $LUA_DIR$")
 	set(LUA_LIB        ""               CACHE FILEPATH "Where lua and lualib are. (For Windows, these are .dll and .lib)")
@@ -34,7 +34,7 @@ endif()
 
 # OpenAL
 find_package(OpenAL)
-if(NOT OPENAL_FOUND)
+if((NOT OPENAL_FOUND) AND (NOT OPENAL_INCLUDE) AND (NOT OPENAL_LIB))
 	message(SEND_ERROR "Could not find OpenAL, please specify the include and lib directories")
 	set(OPENAL_INCLUDE  $ENV{OPENALDIR} CACHE PATH "Where the al.h is.  Default is ./OpenAL SDK/include")
 	set(OPENAL_LIB      ""              CACHE PATH "Where the OpenAL32.lib is.  Default is ./OpenAL SDK/libs/Win32")
