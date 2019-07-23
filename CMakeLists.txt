@@ -35,13 +35,13 @@ endif()
 # OpenAL
 find_package(OpenAL)
 if(NOT OPENAL_FOUND)
-	message(SEND_ERROR "Could not find OpenAL, please specify the include and lib directories"
-	set(OPENAL_INCLUDE  $ENV{OPENALDIR} CACHE FILEPATH "Where the al.h is.  Default is .\OpenAL SDK\include"
-	set(OPENAL_LIB      ""              CACHE FILEPATH "Where the OpenAL32.lib is.  Default is .\OpenAL SDK\libs\Win32"
+	message(SEND_ERROR "Could not find OpenAL, please specify the include and lib directories")
+	set(OPENAL_INCLUDE  $ENV{OPENALDIR} CACHE FILEPATH "Where the al.h is.  Default is ./OpenAL SDK/include")
+	set(OPENAL_LIB      ""              CACHE FILEPATH "Where the OpenAL32.lib is.  Default is ./OpenAL SDK/libs/Win32")
 else()
 	get_filename_component(OPENAL_LIBRARY_DIRS ${OPENAL_LIBRARY} DIRECTORY)
-	set(OPENAL_INCLUDE  ${OPENAL_INCLUDE_DIR}   CACHE FILEPATH "Where the al.h is.  Default is .\OpenAL SDK\include"
-	set(OPENAL_LIB      ${OPENAL_LIBRARY_DIRS}  CACHE FILEPATH "Where the OpenAL32.lib is.  Default is .\OpenAL SDK\libs\Win32"
+	set(OPENAL_INCLUDE  ${OPENAL_INCLUDE_DIR}   CACHE FILEPATH "Where the al.h is.  Default is ./OpenAL SDK/include")
+	set(OPENAL_LIB      ${OPENAL_LIBRARY_DIRS}  CACHE FILEPATH "Where the OpenAL32.lib is.  Default is ./OpenAL SDK/libs/Win32")
 endif()
 
 #message(STATUS "OPENAL_INCLUDE_DIR = ${OPENAL_INCLUDE_DIR}")
