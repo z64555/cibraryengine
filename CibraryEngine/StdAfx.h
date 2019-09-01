@@ -12,12 +12,12 @@
 #endif
 
 #include "GLee.h"
-#include <GL/gl.h>
-#include <GL/gl3.h>
-#include <GL/glu.h>
+#include <gl.h>
+#include <gl3.h>
+#include <glu.h>
 
-#include <AL/al.h>
-#include <AL/alc.h>
+#include <al.h>
+#include <alc.h>
 
 #include <stdio.h>
 #include <time.h>

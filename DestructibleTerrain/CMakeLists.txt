@@ -24,7 +24,7 @@ link_directories(${OPENAL_LIB})
 
 # OpenGL
 # Found in root CMakeLists.txt
-include_directories(${OPENGL_INCLUDE_DIRS})
+include_directories(${OPENGL_INCLUDE})
 
 #include_directories("${PROJECT_SOURCE_DIR}/build/include")          #For OpenAL and OpenGL include files
 

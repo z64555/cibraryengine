@@ -53,11 +53,17 @@ get_filename_component(OPENAL_LIBRARY_DIRS ${OPENAL_LIBRARY} DIRECTORY)
 
 # OpenGL
 find_package(OpenGL REQUIRED)
-message(STATUS "OpenGL found?........${OPENGL_FOUND}")
-message(STATUS "GLU found?...........${OPENGL_GLU_FOUND}")
-message(STATUS "OpenGL Lib found?....${OpenGL_OpenGL_FOUND}")
-message(STATUS "OPENGL_INCLUDE_DIRS..${OPENGL_INCLUDE_DIRS}")
-message(STATUS "OPENGL_LIBRARIES.....${OPENGL_LIBRARIES}")
+message(STATUS "OpenGL found?...........${OPENGL_FOUND}")
+message(STATUS "GLU found?..............${OPENGL_GLU_FOUND}")
+message(STATUS "OpenGL Lib found?.......${OpenGL_OpenGL_FOUND}")
+message(STATUS "OPENGL_INCLUDE_DIRS.....${OPENGL_INCLUDE_DIR}")
+message(STATUS "OPENGL_LIBRARIES........${OPENGL_LIBRARIES}")
+message(STATUS "OPENGL_glu_LIBRARY......${OPENGL_glu_LIBRARY}")
+message(STATUS "OPENGL_gl_LIBRARY.......${OPENGL_gl_LIBRARY}")
+message(STATUS "OPENGL_opengl_LIBRARY...${OPENGL_opengl_LIBRARY}")
+
+set(OPENGL_INCLUDE ${OPENGL_INCLUDE_DIR} CACHE PATH "Location of OpenGL SDK include. gl.h, gl3.h, etc.")
+set(OPENGL_LIB ${OPENGL_LIBRARIES} CACHE PATH "Location of the OpenGL Libraries")
 
 # SOIL
 ## This form of set allows editing in cmake-gui before generation
