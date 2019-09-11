@@ -122,7 +122,8 @@ include_directories(${OPENGL_INCLUDE})
 #include_directories("${PROJECT_SOURCE_DIR}/build/include")          #For OpenAL and OpenGL include files
 
 # SOIL
-include_directories(${SOIL_ROOT}/src)
+include_directories(${SOIL_INCLUDE})
+link_directories(${SOIL_LIB})
 
 # LUA
 add_library(lua SHARED IMPORTED GLOBAL)
@@ -134,9 +135,15 @@ include_directories(${LUA_INCLUDE})
 ## Add target
 add_executable(TestProject ${TEST_SOURCES})
 
+## Link Intra-project dependencies
 target_include_directories(TestProject PUBLIC CibraryEngine)
 target_link_libraries(TestProject PUBLIC CibraryEngine)
 
+## Link external dependencies
 target_link_libraries(TestProject PUBLIC ${Boost_LIBRARIES})
 target_link_libraries(TestProject PUBLIC OpenAL32)
 target_link_libraries(TestProject PUBLIC ${LUA_LIB})
+target_link_libraries(TestProject PUBLIC ${SOIL_LIBRARIES})
+
+# Windows libraries
+target_link_libraries(TestProject PUBLIC Shcore)

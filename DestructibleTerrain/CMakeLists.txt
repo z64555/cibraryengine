@@ -29,7 +29,8 @@ include_directories(${OPENGL_INCLUDE})
 #include_directories("${PROJECT_SOURCE_DIR}/build/include")          #For OpenAL and OpenGL include files
 
 # SOIL
-include_directories(${SOIL_ROOT}/src)
+include_directories(${SOIL_INCLUDE})
+link_directories(${SOIL_LIB})
 
 # LUA
 # Found in root CMakeLists.txt
@@ -46,3 +47,7 @@ target_link_libraries(DestructibleTerrain PUBLIC CibraryEngine)
 target_link_libraries(DestructibleTerrain PUBLIC ${Boost_LIBRARIES})
 target_link_libraries(DestructibleTerrain PUBLIC ${LUA_LIB})
 target_link_libraries(DestructibleTerrain PUBLIC OpenAL32)
+target_link_libraries(DestructibleTerrain PUBLIC ${SOIL_LIBRARIES})
+
+# Windows libraries
+target_link_libraries(DestructibleTerrain PUBLIC Shcore)

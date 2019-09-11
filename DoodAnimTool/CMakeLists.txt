@@ -64,7 +64,8 @@ include_directories(${OPENGL_INCLUDE})
 #include_directories("${PROJECT_SOURCE_DIR}/build/include")          #For OpenAL and OpenGL include files
 
 #Soil
-include_directories(${SOIL_ROOT}/src)
+include_directories(${SOIL_INCLUDE})
+link_directories(${SOIL_LIB})
 
 #Lua
 include_directories(${LUA_INCLUDE})
@@ -80,3 +81,7 @@ target_link_libraries(DoodAnimTool PUBLIC CibraryEngine)
 target_link_libraries(DoodAnimTool PUBLIC ${Boost_LIBRARIES})
 target_link_libraries(DoodAnimTool PUBLIC ${LUA_LIB})
 target_link_libraries(DoodAnimTool PUBLIC OpenAL32)
+target_link_libraries(DoodAnimTool PUBLIC ${SOIL_LIBRARIES})
+
+# Windows libraries
+target_link_libraries(DoodAnimTool PUBLIC Shcore)

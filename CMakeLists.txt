@@ -2,6 +2,13 @@ message(STATUS "Parsing './CMakeLists.txt'")
 ## ./CMakeLists.txt
 cmake_minimum_required(VERSION 3.12)
 
+## This form of set allows editing in cmake-gui (by the user) before generation
+## set(<var_name> <default_val> CACHE <datatype> [Description])
+
+## This form of set allows us (the CMAKE maintainers) to make "internal" variables
+## set(<var_nam> <value>)
+
+
 ## The project name.  Is the name of the solution files and default name of the executable.
 project(cibrary)
 
@@ -66,10 +73,10 @@ set(OPENGL_INCLUDE ${OPENGL_INCLUDE_DIR} CACHE PATH "Location of OpenGL SDK incl
 set(OPENGL_LIB ${OPENGL_LIBRARIES} CACHE PATH "Location of the OpenGL Libraries")
 
 # SOIL
-## This form of set allows editing in cmake-gui before generation
-## set(<var_name> <default_val> CACHE <datatype> [Description])
-set(SOIL_ROOT  $ENV{SOIL_ROOT}  CACHE FILEPATH "Root directory of your SOIL installation")
-
+set(SOIL_ROOT       $ENV{SOIL_ROOT})
+set(SOIL_INCLUDE    ${SOIL_ROOT}/src CACHE PATH "Location of SOIL.h")
+set(SOIL_LIB        ${SOIL_ROOT}/lib CACHE PATH "Location of libSOIL.lib. (Cannot use libSOIL.a on Windows)")
+set(SOIL_LIBRARIES  libSOIL)
 
 ## Project Source, Libs, and Utils directories
 ## These get done last, because CMake will dive right into each subdir's generation before finishing here

@@ -272,7 +272,8 @@ include_directories(${OPENGL_INCLUDE})
 #include_directories("${PROJECT_SOURCE_DIR}/build/include")          #For OpenAL and OpenGL include files
 
 # SOIL
-include_directories(${SOIL_ROOT}/src)
+include_directories(${SOIL_INCLUDE})
+link_directories(${SOIL_LIB})
 
 # LUA
 include_directories(${LUA_INCLUDE})
@@ -282,10 +283,10 @@ message(STATUS "OPENGL_INCLUDE_DIR  = ${OPENGL_INCLUDE_DIR}")
 message(STATUS "SOIL_ROOT           = ${SOIL_ROOT}")
 message(STATUS "LUA_INCLUDE         = ${LUA_INCLUDE}")
 
-## Build the lib
+## Add target
 add_library(CibraryEngine STATIC ${ENGINE_SOURCES})
 
-## Link to other libs
+## Link external dependences
 #boost
 #soil
 #lua
@@ -293,3 +294,4 @@ add_library(CibraryEngine STATIC ${ENGINE_SOURCES})
 #OpenGL
 target_link_libraries(CibraryEngine PUBLIC ${OPENGL_LIBRARIES})
 target_link_libraries(CibraryEngine PUBLIC OpenAL32)
+target_link_libraries(CibraryEngine PUBLIC ${SOIL_LIBRARIES})
