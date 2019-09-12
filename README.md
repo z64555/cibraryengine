@@ -22,5 +22,13 @@ Getting Started:
     glu.h
 
   SOIL
-    You need to have libSOIL built by your compiler of choice and saved as a *.lib.  The MSVC projects its SDK provides will generate
+    You need to have libSOIL built by your compiler of choice and saved as a .lib.  The MSVC projects its SDK provides will generate
     a SOIL.lib, so just rename it to libSOIL.lib and you'll be set.
+
+Debugging:
+  If you want to use an IDE debugger, such as the one in Visual Studio, you have to set the working directory within the TestProject's
+  property pages to the source code root directory. This is so that the .exe can find runtime assets
+  
+  For Visual Studio, you can try using $(ProjectDir)..\..\..\
+  
+  You may also need to copy lua51.dll and lua5.1.dll to be with the compiled .exe.
